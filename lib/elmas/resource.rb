@@ -49,6 +49,7 @@ module Elmas
 
     # Normally use the url method (which applies the filters) but sometimes you only want to use the base path or other paths
     def get(uri = self.uri)
+      ensure_fresh_authorization
       @response = Elmas.get(URI.unescape(uri.to_s))
     end
 
@@ -65,6 +66,7 @@ module Elmas
     end
 
     def save
+      ensure_fresh_authorization
       attributes_to_submit = sanitize
       if valid?
         if id?
@@ -79,6 +81,7 @@ module Elmas
     end
 
     def delete
+      ensure_fresh_authorization
       return nil unless id?
       Elmas.delete(basic_identifier_uri)
     end
@@ -95,6 +98,14 @@ module Elmas
     end
 
     private
+
+    def ensure_fresh_authorization
+      unless Elmas.authorized?
+        Elmas.configure do |config|
+          config.access_token = Elmas.authorize(ENV['EXACT_USER_NAME'], ENV['EXACT_PASSWORD']).access_token
+        end
+      end
+    end
 
     def set_attribute(attribute, value)
       @attributes[attribute.to_sym] = value if valid_attribute?(attribute)
