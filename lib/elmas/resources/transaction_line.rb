@@ -15,7 +15,7 @@ module Elmas
     end
 
     def other_attributes
-      [:asset_code]
+      [:asset_code, :amount_FC, :amount_DC, :account, :currency, :serial_number, :your_ref]
     end
   end
 end
