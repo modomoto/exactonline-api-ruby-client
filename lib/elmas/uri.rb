@@ -64,6 +64,14 @@ module Elmas
         end
       end
 
+      def apply_top
+        @query << ["$top", @top] if @top
+      end
+
+      def apply_expand
+        @query << ["$expand", Utils.camelize(@expand.to_s)] if @expand
+      end
+
       def basic_identifier_uri
         "#{base_path}(guid'#{id}')"
       end

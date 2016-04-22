@@ -24,7 +24,9 @@ module Elmas
     def find_all(options = {})
       @order_by = options[:order_by]
       @select = options[:select]
-      response = get(uri([:order, :select]))
+      @expand = options[:expand]
+      @top = options[:top]
+      response = get(uri([:order, :select, :expand, :top]))
       response.results if response
     end
 
@@ -33,7 +35,9 @@ module Elmas
       @filters = options[:filters]
       @order_by = options[:order_by]
       @select = options[:select]
-      response = get(uri([:order, :select, :filters]))
+      @expand = options[:expand]
+      @top = options[:top]
+      response = get(uri([:order, :select, :filters, :expand, :top]))
       response.results if response
     end
 
