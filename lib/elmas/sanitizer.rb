@@ -16,12 +16,14 @@ module Elmas
         to_submit
       end
 
+      # rubocop:disable Metrics/CyclomaticComplexity
+      # rubocop:disable Metrics/PerceivedComplexity
       def sanitize_relationship(value)
         if value.is_a?(Elmas::Resource)
           return value.id # Turn relation into ID
         elsif value.is_a?(Array)
           return sanitize_has_many(value)
-        elsif value.is_a?(DateTime)
+        elsif value.is_a?(Time) || value.is_a?(Date) || value.is_a?(DateTime)
           return sanitize_date_time(value)
         elsif value.is_a?(String) && value.match(/(Date\()/)
           number = value.scan(/\d+/).first.to_i / 1000.0
@@ -31,6 +33,8 @@ module Elmas
           return value
         end
       end
+      # rubocop:enable Metrics/CyclomaticComplexity
+      # rubocop:enable Metrics/PerceivedComplexity
 
       def sanitize_date_time(value)
         value.strftime("%Y-%m-%d")

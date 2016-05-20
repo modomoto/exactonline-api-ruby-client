@@ -41,7 +41,7 @@ module Elmas
     end
 
     def self.parse_key(key)
-      "VATCode" if key.downcase == "vat_code"
+      "VATCode" if key.casecmp "vat_code"
       Utils.camelize(key)
     end
   end

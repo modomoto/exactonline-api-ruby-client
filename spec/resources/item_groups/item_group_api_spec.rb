@@ -49,12 +49,12 @@ describe Elmas::ItemGroup do
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("logistics/ItemGroups?$order_by=Code&$filter=Code+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("logistics/ItemGroups?$orderby=Code&$filter=Code+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:code, :id], order_by: :code)
     end
 
     it "should only apply the order_by" do
-      expect(Elmas).to receive(:get).with("logistics/ItemGroups?$order_by=Code")
+      expect(Elmas).to receive(:get).with("logistics/ItemGroups?$orderby=Code")
       resource.find_all(order_by: :code)
     end
   end

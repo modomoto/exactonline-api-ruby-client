@@ -61,12 +61,12 @@ describe Elmas::BankEntryLine do
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("financialtransaction/BankEntryLines?$order_by=OurRef&$filter=OurRef+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("financialtransaction/BankEntryLines?$orderby=OurRef&$filter=OurRef+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:our_ref, :id], order_by: :our_ref)
     end
 
     it "should only apply the order_by" do
-      expect(Elmas).to receive(:get).with("financialtransaction/BankEntryLines?$order_by=OurRef")
+      expect(Elmas).to receive(:get).with("financialtransaction/BankEntryLines?$orderby=OurRef")
       resource.find_all(order_by: :our_ref)
     end
   end

@@ -5,13 +5,13 @@ module Elmas
     def initialize(parsed_response)
       @parsed_response = parsed_response
 
-      if @parsed_response.results
-        @records = @parsed_response.results.map do |attributes|
-          resource_class.send(:new, attributes)
-        end
-      else
-        @records = [resource_class.send(:new, @parsed_response.result)]
-      end
+      @records = if @parsed_response.results
+                   @parsed_response.results.map do |attributes|
+                     resource_class.send(:new, attributes)
+                   end
+                 else
+                   [resource_class.send(:new, @parsed_response.result)]
+                 end
     end
 
     def next_page

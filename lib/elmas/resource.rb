@@ -69,11 +69,8 @@ module Elmas
       ensure_fresh_authorization
       attributes_to_submit = sanitize
       if valid?
-        if id?
-          return @response = Elmas.put(basic_identifier_uri, params: attributes_to_submit)
-        else
-          return @response = Elmas.post(base_path, params: attributes_to_submit)
-        end
+        return @response = Elmas.post(base_path, params: attributes_to_submit) unless id?
+        return @response = Elmas.put(basic_identifier_uri, params: attributes_to_submit)
       else
         Elmas.error("Invalid Resource #{self.class.name}, attributes: #{@attributes.inspect}")
         Elmas::Response.new(Faraday::Response.new(status: 400, body: "Invalid Request"))

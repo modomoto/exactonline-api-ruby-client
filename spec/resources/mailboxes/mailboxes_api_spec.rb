@@ -59,12 +59,12 @@ describe Elmas::Mailbox do
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("mailbox/Mailboxes?$order_by=Account&$filter=Account+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("mailbox/Mailboxes?$orderby=Account&$filter=Account+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:account, :id], order_by: :account)
     end
 
     it "should only apply the order_by" do
-      expect(Elmas).to receive(:get).with("mailbox/Mailboxes?$order_by=Account")
+      expect(Elmas).to receive(:get).with("mailbox/Mailboxes?$orderby=Account")
       resource.find_all(order_by: :account)
     end
   end

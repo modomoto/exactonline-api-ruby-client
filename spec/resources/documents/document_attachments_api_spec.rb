@@ -53,12 +53,12 @@ describe Elmas::DocumentAttachment do
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("documents/DocumentAttachments?$order_by=FileName&$filter=FileName+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("documents/DocumentAttachments?$orderby=FileName&$filter=FileName+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:file_name, :id], order_by: :file_name)
     end
 
     it "should only apply the order_by" do
-      expect(Elmas).to receive(:get).with("documents/DocumentAttachments?$order_by=FileName")
+      expect(Elmas).to receive(:get).with("documents/DocumentAttachments?$orderby=FileName")
       resource.find_all(order_by: :file_name)
     end
   end

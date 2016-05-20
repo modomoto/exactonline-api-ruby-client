@@ -19,9 +19,9 @@ module Elmas
     ].freeze
 
     # By default, don't set a user access token
-    DEFAULT_ACCESS_TOKEN = ""
+    DEFAULT_ACCESS_TOKEN = "".freeze
 
-    DEFAULT_REFRESH_TOKEN = ""
+    DEFAULT_REFRESH_TOKEN = "".freeze
 
     # The adapter that will be used to connect if none is set
     #
@@ -29,27 +29,27 @@ module Elmas
     DEFAULT_ADAPTER = Faraday.default_adapter
 
     # By default, client id should be set in .env
-    DEFAULT_CLIENT_ID = ""
+    DEFAULT_CLIENT_ID = "".freeze
 
     # By default, client secret should be set in .env
-    DEFAULT_CLIENT_SECRET = ""
+    DEFAULT_CLIENT_SECRET = "".freeze
 
     # By default, don't set any connection options
-    DEFAULT_CONNECTION_OPTIONS = {}
+    DEFAULT_CONNECTION_OPTIONS = {}.freeze
 
-    DEFAULT_BASE_URL = "https://start.exactonline.nl"
+    DEFAULT_BASE_URL = "https://start.exactonline.nl".freeze
 
     # The endpoint that will be used to connect if none is set
     DEFAULT_ENDPOINT = "api/v1".freeze
 
     # the division code you want to connect with
-    DEFAULT_DIVISION = ""
+    DEFAULT_DIVISION = "".freeze
 
     # The response format appended to the path and sent in the 'Accept' header if none is set
     #
     DEFAULT_FORMAT = :json
 
-    DEFAULT_REDIRECT_URI = "https://www.getpostman.com/oauth2/callback"
+    DEFAULT_REDIRECT_URI = "https://www.getpostman.com/oauth2/callback".freeze
 
     # By default, don't set user agent
     DEFAULT_USER_AGENT = nil
@@ -58,7 +58,7 @@ module Elmas
     VALID_FORMATS = [:json].freeze
 
     # @private
-    attr_accessor *(VALID_OPTIONS_KEYS)
+    attr_accessor *VALID_OPTIONS_KEYS
 
     # When this module is extended, set all configuration options to their default values
     def self.extended(base)

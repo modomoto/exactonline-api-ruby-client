@@ -51,13 +51,13 @@ describe Elmas::TimeTransaction do
   context "Applying order" do
     it "should apply the order_by and filters" do
       resource = Elmas::TimeTransaction.new(id: "12abcdef-1234-1234-1234-123456abcdef", item: "eb73942a-53c0-4ee9-bbb2-6d985814a1b1")
-      expect(Elmas).to receive(:get).with("project/TimeTransactions?$order_by=Item&$filter=Item+eq+guid'eb73942a-53c0-4ee9-bbb2-6d985814a1b1'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("project/TimeTransactions?$orderby=Item&$filter=Item+eq+guid'eb73942a-53c0-4ee9-bbb2-6d985814a1b1'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:item, :id], order_by: :item)
     end
 
     it "should only apply the order_by" do
       resource = Elmas::TimeTransaction.new(id: "12abcdef-1234-1234-1234-123456abcdef", item: "eb73942a-53c0-4ee9-bbb2-6d985814a1b1")
-      expect(Elmas).to receive(:get).with("project/TimeTransactions?$order_by=Item")
+      expect(Elmas).to receive(:get).with("project/TimeTransactions?$orderby=Item")
       resource.find_all(order_by: :item)
     end
   end

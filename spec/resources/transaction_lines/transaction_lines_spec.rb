@@ -49,12 +49,12 @@ describe Elmas::TransactionLine do
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("financialtransaction/TransactionLines?$order_by=AssetCode&$filter=AssetCode+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("financialtransaction/TransactionLines?$orderby=AssetCode&$filter=AssetCode+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:asset_code, :id], order_by: :asset_code)
     end
 
     it "should only apply the order_by" do
-      expect(Elmas).to receive(:get).with("financialtransaction/TransactionLines?$order_by=AssetCode")
+      expect(Elmas).to receive(:get).with("financialtransaction/TransactionLines?$orderby=AssetCode")
       resource.find_all(order_by: :asset_code)
     end
   end

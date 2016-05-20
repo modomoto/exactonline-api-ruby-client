@@ -49,15 +49,15 @@ module Elmas
 
     SUCCESS_CODES = [
       201, 202, 203, 204, 301, 302, 303, 304
-    ]
+    ].freeze
 
     ERROR_CODES = [
       400, 401, 402, 403, 404, 500, 501, 502, 503
-    ]
+    ].freeze
 
     UNAUTHORIZED_CODES = [
       400, 401, 402, 403
-    ]
+    ].freeze
 
     private
 

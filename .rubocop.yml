@@ -16,7 +16,6 @@ AllCops:
     - 'log/**/*'
     - 'spec/**/*'
     - 'config/**/*'
-  RunRailsCops: true
 
 Metrics/AbcSize:
   Max: 30

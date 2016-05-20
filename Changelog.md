@@ -1,3 +1,12 @@
+## 2.2.2
+
+- Fix rubocop issues and specs
+
+## 2.2.1
+
+- Fix date sanitizing (608883148a367d2388b9daa9b454ac6b2dbbf10d)
+- Fix `order_by` filter (ea643593304bba56a73b8263a601526679baaa5a)
+
 ## 2.2.0
 
 - Updates to the README

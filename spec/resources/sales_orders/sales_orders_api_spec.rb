@@ -60,12 +60,12 @@ describe Elmas::SalesOrder do
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("salesorder/SalesOrders?$order_by=OrderNumber&$filter=OrderNumber+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("salesorder/SalesOrders?$orderby=OrderNumber&$filter=OrderNumber+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:order_number, :id], order_by: :order_number)
     end
 
     it "should only apply the order_by" do
-      expect(Elmas).to receive(:get).with("salesorder/SalesOrders?$order_by=OrderNumber")
+      expect(Elmas).to receive(:get).with("salesorder/SalesOrders?$orderby=OrderNumber")
       resource.find_all(order_by: :order_number)
     end
   end
