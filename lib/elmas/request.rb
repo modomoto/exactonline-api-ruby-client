@@ -32,10 +32,11 @@ module Elmas
       path
     end
 
-    def add_headers
+    def add_headers(options = {})
+      content_type = options[:content_type] || "application/#{response_format}"
       headers = {}
-      headers["Content-Type"] = "application/#{response_format}"
-      headers["Accept"] = "application/#{response_format}"
+      headers["Content-Type"] = content_type
+      headers["Accept"] = content_type
       headers["Authorization"] = "Bearer #{access_token}" if access_token
       headers
     end
@@ -48,11 +49,11 @@ module Elmas
         case method
         when :post, :put
           request.url path
-          request.body = options[:params].to_json
+          request.body = options[:body] || options[:params].to_json
         when :get, :delete
           request.url path
         end
-        request.headers = add_headers
+        request.headers = add_headers(options)
       end
       Response.new(response)
     end
